@@ -17,7 +17,7 @@ public class LinkedinLoginTest {
         WebElement signInButton = driver.findElement(By.id("login-submit"));
 
         emailField.sendKeys("alkalin.qa@gmail.com");
-        passwordField.sendKeys("k4l1n14enk0");
+        passwordField.sendKeys("Qweasd#1324");
         signInButton.click();
     }
 

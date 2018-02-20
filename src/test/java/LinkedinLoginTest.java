@@ -19,6 +19,8 @@ public class LinkedinLoginTest {
         emailField.sendKeys("alkalin.qa@gmail.com");
         passwordField.sendKeys("Qweasd#1324");
         signInButton.click();
+        WebElement helloMessage = driver.findElement(By.xpath("//a[@href='/in/alkalin-qa-99903315a/']"));
+        Assert.assertTrue(helloMessage.isDisplayed(),"Hello message is not displayed");
     }
 
     @Test

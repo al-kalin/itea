@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static com.google.common.base.Predicates.equalTo;
-import static java.lang.Thread.sleep;
 
 public class LinkedinSerchTest {
     WebDriver driver;
@@ -61,24 +60,9 @@ public class LinkedinSerchTest {
             Assert.assertTrue(cardTitle.toLowerCase().contains(searchTerm),"Searchterm "+searchTerm+ " not found in cart ");
         }
 
-
-        //for (int i = 1; i < cardTitles.size(); i++) {
-        //  ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", cardTitles.get(i));
-
-        //String cardTitle = driver.findElement(By.xpath("//li[contains(@class,'search-result__occluded-item')][" + i + "]//span[contains(@class, 'actor-name')]")).getText();
-        //System.out.println(cardTitle);
-        //Assert.assertTrue(cardTitle.contains(searchTerm.toLowerCase()),
-        //       "Searchterm "+searchTerm+ "not found in cart number"+ Integer.toString(i));
-        // }
-        // WebElement webElement = driver.findElement(By.xpath('//li[contains(@class, 'search-result__occluded-item')])');
-
-        //Assert.assertEquals("HR", driver.findElement(By.xpath(".//p[@class='subline-level-1 Sans-15px-black-85% search-result__truncate']")).getText());
-        //WebDriver a = driver.findElement(By.xpath(".//p[@class='subline-level-1 Sans-15px-black-85% search-result__truncate']").getText());
-        //Assert.assertTrue(a.contains("HR"));
-        //}
-        //import org.testng.annotations.AfterMethod;
-        //import org.testng.annotations.BeforeMethod;
-        //import org.testng.annotations.Test;
+            //import org.testng.annotations.AfterMethod;
+            //import org.testng.annotations.BeforeMethod;
+            //import org.testng.annotations.Test;
 
     }
 }

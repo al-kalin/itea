@@ -24,17 +24,17 @@ public class LinkedinSerchTest {
         driver.get("https://www.linkedin.com");
     }
     //метод который выполняется после основного кода- закрывает браузер.
-    //@AfterMethod
-    //public void afterTest() {
-    //    driver.close();
-    //}
+    @AfterMethod
+    public void afterTest() {
+        driver.close();
+    }
 
     @Test
     public void basicSearchTest() throws InterruptedException {
         LinkedinLoginPage loginPage = new LinkedinLoginPage(driver);
         loginPage.loginAs("alkalin.qa@gmail.com", "Qweasd#1324");
 
-        String searchTerm = "HR";
+        String searchTerm = "hr";
 
         WebElement searchField = driver.findElement(By.xpath(".//artdeco-typeahead-input/input"));
         searchField.sendKeys(searchTerm + "\n");
@@ -58,8 +58,7 @@ public class LinkedinSerchTest {
         for (int i = 1; i <= cardTitles.size(); i++) {
             String cardTitle = driver.findElement(By.xpath("//li[contains(@class,'search-result__occluded-item')][" +i+ "]//span[contains(@class, 'actor-name')]")).getText();
             System.out.println(cardTitle);
-            //Assert.assertTrue(cardTitle.contains(searchTerm.toLowerCase()),
-                 //   "Searchterm "+searchTerm+ " not found in cart number " + Integer.toString(i));
+            Assert.assertTrue(cardTitle.toLowerCase().contains(searchTerm),"Searchterm "+searchTerm+ " not found in cart ");
         }
 
 

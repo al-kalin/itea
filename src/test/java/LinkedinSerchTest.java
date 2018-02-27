@@ -72,8 +72,6 @@ public class LinkedinSerchTest {
         // }
         // WebElement webElement = driver.findElement(By.xpath('//li[contains(@class, 'search-result__occluded-item')])');
 
-        //int countResult = driver.findElements(By.xpath(".//li[@class='search-result search-result__occluded-item ember-view']")).size();
-        //System.out.println(countResult);
         //Assert.assertEquals("HR", driver.findElement(By.xpath(".//p[@class='subline-level-1 Sans-15px-black-85% search-result__truncate']")).getText());
         //WebDriver a = driver.findElement(By.xpath(".//p[@class='subline-level-1 Sans-15px-black-85% search-result__truncate']").getText());
         //Assert.assertTrue(a.contains("HR"));
@@ -82,8 +80,5 @@ public class LinkedinSerchTest {
         //import org.testng.annotations.BeforeMethod;
         //import org.testng.annotations.Test;
 
-        //List<WebElement> results = driver.findElements(By.xpath("//li[contains(@class,'search-result__occluded-item')]"));
-        //int currentResultsNumber = results.size();
-        //Assert.assertEquals(results.size(), 10, "Number of results is wrong");
     }
 }

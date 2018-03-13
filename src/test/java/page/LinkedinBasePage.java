@@ -1,27 +1,21 @@
+package page;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LinkedinBasePage {
     WebDriver driver;
 
-    private WebElement userIcon;
-
     public LinkedinBasePage (WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    private void initElement() {
-        userIcon = driver.findElement(By.id("profile-nav-item"));
-    }
-
-    public boolean isSignedIn(){
-        initElement();
-        waitUntilElementIsClickable(userIcon);
-        return userIcon.isDisplayed();
-    }
 
     public String getPageTitle() {
         return driver.getTitle();
@@ -39,4 +33,12 @@ public class LinkedinBasePage {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
+
+    /*public void findElement(WebDriver driver) {
+       this.driver = driver;
+    }*/
+
+    //public void By(WebDriver driver) {
+    //    this.driver = driver;
+    //}
 }

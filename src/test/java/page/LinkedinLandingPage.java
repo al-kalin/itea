@@ -23,7 +23,7 @@ public class LinkedinLandingPage extends LinkedinBasePage{
     }
 
     // дженерик
-    public <T> T loginAs(String email, String passeord) {
+    public <T> T loginAs(String email, String password) {
         waitUntilElementIsClickable(emailField, 5);
         emailField.sendKeys(email);
         passwordField.sendKeys(password);
@@ -39,5 +39,3 @@ public class LinkedinLandingPage extends LinkedinBasePage{
         }
     }
 }
-
-//дз: привести в порядок серч тест

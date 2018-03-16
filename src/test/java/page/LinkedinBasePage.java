@@ -13,7 +13,6 @@ public class LinkedinBasePage {
 
     public LinkedinBasePage (WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
 
@@ -33,12 +32,4 @@ public class LinkedinBasePage {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
-
-    /*public void findElement(WebDriver driver) {
-       this.driver = driver;
-    }*/
-
-    //public void By(WebDriver driver) {
-    //    this.driver = driver;
-    //}
 }

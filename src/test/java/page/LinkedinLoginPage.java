@@ -17,8 +17,16 @@ public class LinkedinLoginPage extends LinkedinBasePage{
     @FindBy(id = "btn-primary")
     private WebElement signInButton;
 
+    @FindBy(id = "global-alert-queue")
+    private WebElement alertError;
+
+
     public LinkedinLoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    public boolean isNotSignedIn() {
+        return alertError.isDisplayed();
     }
 }

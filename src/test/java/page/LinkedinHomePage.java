@@ -18,12 +18,9 @@ public class LinkedinHomePage extends LinkedinBasePage {
     @FindBy(xpath = ".//artdeco-typeahead-input/input")
     private WebElement searchField;
 
-
-    @FindBy(xpath = "//li[contains(@class,'search-result__occluded-item')][\" +i+ \"]//span[contains(@class, 'actor-name')]")
-    private List<WebElement> cardTitles;
-
     public LinkedinHomePage(WebDriver driver) {
         super(driver);
+        PageFactory.initElements(driver, this);
     }
 
     public boolean isSignedIn() {
@@ -32,19 +29,8 @@ public class LinkedinHomePage extends LinkedinBasePage {
     }
 
     //метод поиска который принимает на вход значение для поиска
-    public LinkedinHomePage searchByTerm(String searchTerm) {
+    public LinkedinSearchPage searchByTerm(String searchTerm) {
         searchField.sendKeys(searchTerm + "\n");
-        return PageFactory.initElements(driver, LinkedinHomePage.class);
-    }
-
-    //находим наши 10 элементов и убеждаемся что их 10
-    public LinkedinHomePage checkSearchResults() {
-        driver.findElements(results);
-        //[contains(@class,'search-result__occluded-item')] xpath запрос который говорит что мы ищем ли
-        // с классом который содержит в своем название текст "search-result__occluded-item"
-        // скролим по элементам
-        for (int i = 0; i < results.size(); i++) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", results.get(i));
-        }
+        return new LinkedinSearchPage(driver);
     }
 }

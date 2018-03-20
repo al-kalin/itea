@@ -9,33 +9,28 @@ import page.LinkedinHomePage;
 import page.LinkedinLandingPage;
 import page.LinkedinLoginPage;
 
-public class LinkedinLoginTest {
+public class LinkedinLoginTest extends LinkedinBaseTest{
     WebDriver driver;
-    LinkedinLandingPage landingPage;
+
     String initialPageTitle;
     String initialPageUrl;
 
-    @BeforeMethod
-    public void beforTest() {
-        driver = new FirefoxDriver();
-        driver.get("https://www.linkedin.com");
-        landingPage = new LinkedinLandingPage(driver);
-        initialPageTitle = landingPage.getPageTitle();
-        initialPageUrl = landingPage.getPageUrl();
+    @DataProvider
+    public Object[][] successfullTestCredentials() {
+        return new Object[][]{
+                {"alkalin.qa@gmail.com", "Qweasd#1324"},
+                {"ALKALIN.QA@GMAIL.COM", "Qweasd#1324"}};
     }
 
-    @AfterMethod
-    public void afterTest() {
-        driver.close();
-    }
-
-    @Test
-    public void successfullLoginTest() {
+    @Test(dataProvider = "successfullTestCredentials")
+    public void successfullLoginTest(String email, String password) {
+            String initialPageTitle = landingPage.getPageTitle();
+            String initialPageUrl = landingPage.getPageUrl();
 
         //Assert.assertEquals(initialPageTitle, "LinkedIn: Log In or Sign Up",
           //      "Login page title is wrong"); (work if you on en version)
 
-        LinkedinHomePage homePage = landingPage.loginAs("alkalin.qa@gmail.com", "Qweasd#1324");
+        LinkedinHomePage homePage = landingPage.loginAs(email, password);
         Assert.assertTrue(homePage.isSignedIn(), "User is not signed in");
 
         Assert.assertNotEquals(homePage.getPageTitle(), initialPageTitle,
@@ -45,12 +40,21 @@ public class LinkedinLoginTest {
                 "Page url did not change after login");
     }
 
-    @Test
-    public void negativLoginTest() {
-        LinkedinLoginPage loginPage = landingPage.loginAs("test@ukr.net", "12345");
+    @DataProvider
+    public Object[][] negativTestCredentials() {
+        return new Object[][]{
+                {"", ""},
+                {"xyz", "xyz"}};
+
+    }
+
+    @Test(dataProvider = "negativTestCredentials")
+    public void negativLoginTest(String email, String password) {
+        String initialPageTitle = landingPage.getPageTitle();
+        String initialPageUrl = landingPage.getPageUrl();
+        LinkedinLoginPage loginPage = landingPage.loginAs(email, password);
 
         Assert.assertTrue(loginPage.isNotSignedIn(), "Alert massage is not displayed");
-        //Assert.assertNotEquals(homePage.isSignedIn(), "User is not signed in");
 
         Assert.assertNotEquals(loginPage.getPageTitle(), initialPageTitle,
                 "Page title did not change after login");

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LinkedinBasePage {
     WebDriver driver;
 
-    public LinkedinBasePage (WebDriver driver) {
+    public LinkedinBasePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -29,6 +29,11 @@ public class LinkedinBasePage {
     }
 
     public void waitUntilElementIsClickable(WebElement webElement, int timeOutInSeconds) {
+        WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public void waitUntilELementIsVisible(WebElement webElement, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
     }

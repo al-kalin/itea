@@ -14,27 +14,13 @@ import page.LinkedinSearchPage;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class LinkedinSerchTest {
-    WebDriver driver;
-
-    //метод который срабатывает перед основным кодом -запускает браузер, открывает нужный урл.
-    @BeforeMethod
-    public void beforTest() {
-        driver = new FirefoxDriver();
-        driver.get("https://www.linkedin.com");
-    }
-    //метод который выполняется после основного кода- закрывает браузер.
-    @AfterMethod
-    public void afterTest() {
-        driver.close();
-    }
+public class LinkedinSerchTest extends LinkedinBaseTest{
 
     @Test
     public void basicSearchTest() {
         String searchTerm = "hr";
 
-        LinkedinLandingPage loginPage = new LinkedinLandingPage(driver);
-        LinkedinHomePage homePage = loginPage.loginAs("alkalin.qa@gmail.com", "Qweasd#1324");
+        LinkedinHomePage homePage = landingPage.loginAs("alkalin.qa@gmail.com", "Qweasd#1324");
         LinkedinSearchPage searchPage = homePage.searchByTerm(searchTerm);
         List<String> results = searchPage.getResults();
 

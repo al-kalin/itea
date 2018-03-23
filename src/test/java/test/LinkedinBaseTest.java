@@ -14,10 +14,26 @@ import page.LinkedinLandingPage;
 public class LinkedinBaseTest {
     WebDriver driver;
     LinkedinLandingPage landingPage;
-    @Parameters({"browserType"})
+    @Parameters({"browserType", "testUrl"})
     //метод который срабатывает перед основным кодом -запускает браузер, открывает нужный урл.
     @BeforeMethod
-    public void beforTest(@Optional("firefox")String browserType) {
+    public void beforTest(@Optional("firefox")String browserType, @Optional("https://www.linkedin.com/") String testUrl) {
+
+        switch (browserType.toLowerCase()){
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+            default:
+                System.out.println("Unsupported browser");
+                break;
+        }
+
+        /* тот же бифор метод через иф
         if (browserType.toLowerCase().equals("firefox")){
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
@@ -28,9 +44,9 @@ public class LinkedinBaseTest {
         }
         else {
             System.out.println("Unsupported browser");
-        }
+        }*/
 
-        driver.get("https://www.linkedin.com");
+        driver.get(testUrl);
         landingPage = new LinkedinLandingPage(driver);
     }
     //метод который выполняется после основного кода- закрывает браузер.

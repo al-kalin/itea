@@ -28,6 +28,7 @@ public class LinkedinBasePage {
         waitUntilElementIsClickable(webElement, 10);
     }
 
+
     public void waitUntilElementIsClickable(WebElement webElement, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
@@ -35,6 +36,6 @@ public class LinkedinBasePage {
 
     public void waitUntilELementIsVisible(WebElement webElement, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+        wait.until(ExpectedConditions.visibilityOf(webElement));
     }
 }

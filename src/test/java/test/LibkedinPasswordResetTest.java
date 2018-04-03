@@ -1,5 +1,6 @@
 package test;
 
+import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import page.LinkedinRequestPasswordResetPage;
@@ -26,34 +27,13 @@ public class LibkedinPasswordResetTest extends LinkedinBaseTest{
         LinkedinPasswordResetSubmitPage passwordResetSubmitPage = reqestPasswordResetPage.submitEmail(userEmail);
         Assert.assertTrue(passwordResetSubmitPage.isLoaded(), "passwordResetSubmitPage is not loaded");
 
-        String messageSubjectPartial = "here's the link to reset your password";
-        String messageToPartial = "alkalin.qa@gmail.com";
-        String messageFromPartial = "security-noreply@linkedin.com";
+        String resetPasswordLink = passwordResetSubmitPage.getResetPasswordLinkFromEmail(userEmail);
+        //entering capcha manually
 
-        GMailService GMailService = new GMailService();
-        String message = GMailService.waitForNewMessage(messageSubjectPartial, messageToPartial, messageFromPartial, 60);
-
-        System.out.println("Content: " + message);
-
-        //https://www.linkedin.com/e/rpp/639069381/alkalin%2Eqa%40gmail%2Ecom/1875808516860349911/?hs=true&tok=2cKYSU9RLc6oc1
-
-        private static final Pattern urlPattern = Pattern.compile(
-                "(?:^|[\\W])((ht|f)tp(s?):\\/\\/|www\\.)"
-                        + "(([\\w\\-]+\\.){1,}?([\\w\\-.~]+\\/?)*"
-                        + "[\\p{Alnum}.,%_=?&#\\-+()\\[\\]\\*$~@!:/{};']*)",
-                Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
-
-        Matcher matcher = urlPattern.matcher(message);
-        while (matcher.find()) {
-            int matchStart = matcher.start(1);
-            int matchEnd = matcher.end();
-            // now you have the offsets of a URL match
-        }
-
-        LinkedinResetPasswordPage resetPasswordPage = new LinkedinResetPasswordPage(driver);
+        LinkedinResetPasswordPage resetPasswordPage = passwordResetSubmitPage.navigateToResetPasswordLink(resetPasswordLink);
         Assert.assertTrue(resetPasswordPage.isLoaded(), "resetPasswordPage is not loaded");
 
-        LinkedinSuccessfulChangePasswordPage successfulChangePasswordPage = resetPasswordPage.changePassword(String, "newPassword");
+        LinkedinSuccessfulChangePasswordPage successfulChangePasswordPage = resetPasswordPage.changePassword(newPassword);
         Assert.assertTrue(successfulChangePasswordPage.isLoaded(), "successfulChangePasswordPage is not loaded");
 
     }

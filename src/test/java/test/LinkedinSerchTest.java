@@ -16,6 +16,9 @@ import java.util.concurrent.TimeUnit;
 
 public class LinkedinSerchTest extends LinkedinBaseTest{
 
+    /**
+     * Test that verifies basic Search by specific Search term
+     */
     @Test
     public void basicSearchTest() {
         String searchTerm = "hr";

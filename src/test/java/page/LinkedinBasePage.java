@@ -11,6 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public abstract class LinkedinBasePage {
     WebDriver driver;
 
+    /**
+     * Constructor of LinkedinBasePage class which takes WebDriver instance initialized in @BeforMethod
+     * for reuse in LinkedinBasePage class methods
+     * @param driver - WebDriver instance
+     */
     public LinkedinBasePage(WebDriver driver) {
         this.driver = driver;
     }
@@ -23,18 +28,37 @@ public abstract class LinkedinBasePage {
         return driver.getCurrentUrl();
     }
 
-    public void waitUntilElementIsClickable(WebElement webElement) {
+    /**
+     * Wait until WebElement is Clickable on Web page
+     * @param webElement - WebElement to Wait for
+     * @return WebElement after wait
+     */
+    public WebElement waitUntilElementIsClickable(WebElement webElement) {
         waitUntilElementIsClickable(webElement, 10);
+        return webElement;
     }
 
-
-    public void waitUntilElementIsClickable(WebElement webElement, int timeOutInSeconds) {
+    /**
+     * Wait until WebElement is Clickable on Web page
+     * @param webElement - WebElement to Wait for
+     * @param timeOutInSeconds - time to wait
+     * @return WebElement after wait
+     */
+    public WebElement waitUntilElementIsClickable(WebElement webElement, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
+        return webElement;
     }
 
+    /**
+     * Wait until WebElement is Visible on Web page
+     * @param webElement - WebElement to Wait for
+     * @param timeOutInSeconds - time to wait
+     */
     public void waitUntilELementIsVisible(WebElement webElement, int timeOutInSeconds) {
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(ExpectedConditions.visibilityOf(webElement));
     }
+
+    public abstract boolean isLoaded();
 }

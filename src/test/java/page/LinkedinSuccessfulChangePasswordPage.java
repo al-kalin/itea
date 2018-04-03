@@ -8,7 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinSuccessfulChangePasswordPage extends LinkedinBasePage{
 
+    /**
+     * Find WebElment successfullChangeMessage
+     */
     @FindBy(xpath = "//*[@class= 'flow-login-content']")
+    //"//div"
     private WebElement successfullChangeMessage;
 
     public LinkedinSuccessfulChangePasswordPage(WebDriver driver) {
@@ -16,6 +20,10 @@ public class LinkedinSuccessfulChangePasswordPage extends LinkedinBasePage{
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Is the element loaded or not?
+     * @return True if the element is displayed, false otherwise.
+     */
     public boolean isLoaded() {
         boolean isLoaded;
         try {

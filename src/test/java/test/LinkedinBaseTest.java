@@ -14,6 +14,11 @@ import page.LinkedinLandingPage;
 public class LinkedinBaseTest {
     WebDriver driver;
     LinkedinLandingPage landingPage;
+
+    /**
+     * @param browserType
+     * @param testUrl
+     */
     @Parameters({"browserType", "testUrl"})
 
     @BeforeMethod
@@ -37,6 +42,9 @@ public class LinkedinBaseTest {
         landingPage = new LinkedinLandingPage(driver);
     }
 
+    /**
+     * close driver after test
+     */
     @AfterMethod
     public void afterTest() {
         driver.close();

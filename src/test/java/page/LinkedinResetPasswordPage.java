@@ -8,12 +8,21 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LinkedinResetPasswordPage extends LinkedinBasePage{
 
+    /**
+     * Find WebElment newPasswordField
+     */
     @FindBy(id = "new_password-newPassword-passwordReset")
     private WebElement newPasswordField;
 
+    /**
+     * Find WebElment NewPasswordAgainField
+     */
     @FindBy (id = "new_password_again-newPassword-passwordReset")
     private WebElement NewPasswordAgainField;
 
+    /**
+     * Find WebElment submitButton
+     */
     @FindBy (id = "reset")
     private WebElement submitButton;
 
@@ -22,6 +31,10 @@ public class LinkedinResetPasswordPage extends LinkedinBasePage{
         PageFactory.initElements(driver, this);
     }
 
+    /**
+     * Is the element loaded or not?
+     * @return True if the element is displayed, false otherwise.
+     */
     public boolean isLoaded(){
         boolean isLoaded;
         try {
@@ -33,10 +46,15 @@ public class LinkedinResetPasswordPage extends LinkedinBasePage{
         return  isLoaded;
     }
 
+    /**
+     * Enter new password to change old password
+     * @param newPassword - new password
+     * @return new web page LinkedinSuccessfulChangePasswordPage
+     */
     public LinkedinSuccessfulChangePasswordPage changePassword(String newPassword) {
         newPasswordField.sendKeys(newPassword);
         NewPasswordAgainField.sendKeys(newPassword);
-        submitButton.click();
+        waitUntilElementIsClickable(submitButton).click();
         return new LinkedinSuccessfulChangePasswordPage(driver);
     }
 }

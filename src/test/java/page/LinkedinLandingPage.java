@@ -66,8 +66,8 @@ public class LinkedinLandingPage extends LinkedinBasePage{
      * Enter email and password and verifies. Navigated to new web page
      * @param email - user email to login
      * @param password - user password to login
-     * @param <T> - generic type
-     * @return new web page LinkedinHomePage or LinkedinLoginPage
+     * @param <T> - generic type is a generic class is parameterized over types.
+     * @return new web page LinkedinHomePage or LinkedinLoginPage according @params
      */
     public <T> T loginAs(String email, String password) {
         waitUntilElementIsClickable(emailField, 5);

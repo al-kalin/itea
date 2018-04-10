@@ -16,8 +16,11 @@ public class LinkedinBaseTest {
     LinkedinLandingPage landingPage;
 
     /**
-     * @param browserType
-     * @param testUrl
+     * Switch for use different browsers and different Urls.
+     * there are two browsers available to use: firefox or chrome, default - firefox.
+     * get Url and open page of LinkedinLandingPage class
+     * @param browserType - browser which will used in the test
+     * @param testUrl - Url for start test page
      */
     @Parameters({"browserType", "testUrl"})
 
